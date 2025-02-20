@@ -7,7 +7,7 @@ const Testimonials = () => (
       {["Amazing platform!", "Best freelancers ever!", "Highly recommended!"]
         .map((review, index) => (
           <div key={index} className="p-6 bg-blue-500 text-white rounded-lg shadow-md w-64">
-            "{review}"
+            &quot;{review}&ldquo;
           </div>
         ))}
     </div>
