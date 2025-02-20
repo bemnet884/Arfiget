@@ -27,7 +27,7 @@ const Testimonials = () => (
           </div>
 
           <p className="text-base sm:text-lg lg:text-lg/8 font-medium tracking-tight text-blue-950 text-center lg:text-left text-pretty">
-            This platform transformed my freelancing career! I've connected with clients worldwide and secured consistent projects. The process is smooth, and payments are secure.
+            This platform transformed my freelancing career! I&apos;ve connected with clients worldwide and secured consistent projects. The process is smooth, and payments are secure.
           </p>
 
           <div className="flex flex-col justify-center lg:justify-start sm:flex-row items-center sm:items-start gap-4 mt-2">
