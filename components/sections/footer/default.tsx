@@ -1,12 +1,11 @@
-import { ModeToggle } from "@/components/ui/mode-toggle";
+import { ModeToggle } from "../../ui/mode-toggle";
 import {
   Footer,
   FooterColumn,
   FooterBottom,
   FooterContent,
-} from "@/components/ui/footer";
-import LaunchUI from "@/components/logos/launch-ui";
-import { Laptop } from "lucide-react";
+} from "../../ui/footer";
+import LaunchUI from "../../logos/launch-ui";
 
 export default function FooterSection() {
   return (
@@ -16,23 +15,23 @@ export default function FooterSection() {
           <FooterContent>
             <FooterColumn className="col-span-2 sm:col-span-3 md:col-span-1">
               <div className="flex items-center gap-2">
-                <Laptop className="text-blue-500" />
-                <div className="text-2xl font-extrabold text-blue-700 tracking-wide">Arfiget</div>
+                <LaunchUI />
+                <h3 className="text-xl font-bold">Launch UI</h3>
               </div>
             </FooterColumn>
             <FooterColumn>
-              <h3 className="text-md pt-1 font-semibold">Services</h3>
+              <h3 className="text-md pt-1 font-semibold">Product</h3>
               <a
                 href="/"
                 className="text-sm text-muted-foreground"
               >
-                Find Freelancers
+                Changelog
               </a>
               <a
                 href="/"
                 className="text-sm text-muted-foreground"
               >
-                Post a Job
+                Documentation
               </a>
             </FooterColumn>
             <FooterColumn>
@@ -41,7 +40,7 @@ export default function FooterSection() {
                 href="/"
                 className="text-sm text-muted-foreground"
               >
-                About Us
+                About
               </a>
               <a
                 href="/"
@@ -57,29 +56,29 @@ export default function FooterSection() {
               </a>
             </FooterColumn>
             <FooterColumn>
-              <h3 className="text-md pt-1 font-semibold">Support</h3>
+              <h3 className="text-md pt-1 font-semibold">Contact</h3>
               <a
                 href="/"
                 className="text-sm text-muted-foreground"
               >
-                Help Center
+                Discord
               </a>
               <a
                 href="/"
                 className="text-sm text-muted-foreground"
               >
-                Community Forum
+                Twitter
               </a>
               <a
                 href="/"
                 className="text-sm text-muted-foreground"
               >
-                Contact Us
+                Github
               </a>
             </FooterColumn>
           </FooterContent>
           <FooterBottom>
-            <div>© 2025 Arfiget. All rights reserved</div>
+            <div>© 2025 Mikołaj Dobrucki. All rights reserved</div>
             <div className="flex items-center gap-4">
               <a href="/">Privacy Policy</a>
               <a href="/">Terms of Service</a>

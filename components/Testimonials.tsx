@@ -32,7 +32,7 @@ const Testimonials = () => (
 
           <div className="flex flex-col justify-center lg:justify-start sm:flex-row items-center sm:items-start gap-4 mt-2">
             <Image
-              src="/images/user-2.png"
+              src="/Work_from_home.jpg"
               className="rounded-full object-cover"
               alt="Freelancer"
               width={48}
@@ -40,7 +40,7 @@ const Testimonials = () => (
             />
             <div className="flex flex-col items-center sm:items-start">
               <p className="font-semibold flex items-center">
-                Emily Carter
+                Sifan L.
                 <Icons.verificationBadge className="size-4 inline-block ml-1.5" />
               </p>
               <p className="text-sm text-gray-600">@emilydesigns</p>
@@ -64,7 +64,7 @@ const Testimonials = () => (
 
           <div className="flex flex-col justify-center lg:justify-start sm:flex-row items-center sm:items-start gap-4 mt-2">
             <Image
-              src="/images/user-1.png"
+              src="/freelancer-hero.jpg"
               className="rounded-full object-cover"
               alt="Client"
               width={48}
@@ -72,7 +72,7 @@ const Testimonials = () => (
             />
             <div className="flex flex-col items-center sm:items-start">
               <p className="font-semibold flex items-center">
-                James Rodriguez
+                Habtamu M.
                 <Icons.verificationBadge className="size-4 inline-block ml-1.5" />
               </p>
               <p className="text-sm text-gray-600">@jamesinnovate</p>
