@@ -161,7 +161,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, onClose }
           <div className="text-center space-y-4 p-6 bg-green-50 rounded-xl shadow-lg transition-opacity duration-500 ease-in-out">
             <h2 className="text-2xl font-bold text-green-700">{successMessage}</h2>
             <p className="text-gray-600">
-              Our team will review your submission. You'll be notified once your account has been verified.
+              Our team will review your submission. You&apos;ll be notified once your account has been verified.
             </p>
             <Button onClick={onClose} className="mt-4 bg-green-600 hover:bg-green-700 text-white">
               Close

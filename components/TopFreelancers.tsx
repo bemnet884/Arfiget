@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { FaStar, FaMedal } from "react-icons/fa";
 
@@ -41,7 +42,7 @@ const TopFreelancers = () => {
             className="relative w-72 bg-white shadow-lg rounded-xl overflow-hidden transform transition duration-300 hover:scale-105"
           >
             {/* Freelancer Image */}
-            <img
+            <Image
               src={freelancer.img}
               alt={freelancer.name}
               className="w-full h-48 object-cover"
