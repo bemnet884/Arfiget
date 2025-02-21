@@ -137,6 +137,22 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, onClose }
       }, 4000);
     }
   };
+  const handleBlur = (key: keyof typeof formData) => {
+    let fieldSchema;
+    if (role === 'Freelancer' && key in freelancerSchema.shape) {
+      fieldSchema = freelancerSchema.shape[key as keyof typeof freelancerSchema.shape];
+    } else if (role === 'Client' && key in clientSchema.shape) {
+      fieldSchema = clientSchema.shape[key as keyof typeof clientSchema.shape];
+    }
+    if (fieldSchema) {
+      const result = fieldSchema.safeParse(formData[key]);
+      if (!result.success) {
+        setErrors((prev) => ({ ...prev, [key]: result.error.errors[0].message }));
+      } else {
+        setErrors((prev) => ({ ...prev, [key]: '' }));
+      }
+    }
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -172,47 +188,56 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, onClose }
 
             {/* Freelancer Flow */}
             {role === 'Freelancer' && step === 1 && (
-              <div>
-                <h3 className="text-2xl font-bold">Step 1: Personal Info</h3>
-                <Input
-                  placeholder="Full Name"
-                  value={formData.name}
-                  onBlur={() => validateField('name', formData.name)}
-                  onChange={(e) => handleChange('name', e.target.value)}
-                  aria-label="Full Name"
-                />
-                {errors.name && <p className="text-red-500">{errors.name}</p>}
-                <Input
-                  placeholder="Email Address"
-                  value={formData.email}
-                  onBlur={() => validateField('email', formData.email)}
-                  onChange={(e) => handleChange('email', e.target.value)}
-                  aria-label="Email Address"
-                />
-                {errors.email && <p className="text-red-500">{errors.email}</p>}
-                <Button onClick={nextStep} disabled={isSubmitting}>Next</Button>
-              </div>
+                <div className="space-y-4 p-4 bg-white rounded-xl shadow-sm">
+                  <h3 className="text-2xl font-bold text-blue-600">Step 1: Personal Info</h3>
+                  <Input
+                    placeholder="Full Name"
+                    value={formData.name}
+                    onBlur={() => handleBlur('name')}
+                    onChange={(e) => handleChange('name', e.target.value)}
+                    aria-label="Full Name"
+                    className="p-3 rounded-xl border focus:ring-2 focus:ring-blue-500"
+                  />
+                  {errors.name && <p className="text-red-500 text-sm italic">{errors.name}</p>}
+                  <Input
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onBlur={() => handleBlur('email')}
+                    onChange={(e) => handleChange('email', e.target.value)}
+                    aria-label="Email Address"
+                    className="p-3 rounded-xl border focus:ring-2 focus:ring-blue-500"
+                  />
+                  {errors.email && <p className="text-red-500 text-sm italic">{errors.email}</p>}
+                  <Button
+                    onClick={nextStep}
+                    disabled={isSubmitting}
+                    className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-2 transition-all"
+                  >
+                    Next
+                  </Button>
+                </div>
             )}
 
             {role === 'Freelancer' && step === 2 && (
-              <div>
-                <h3 className="text-2xl font-bold">Step 2: Skills</h3>
+                <div className="space-y-4 p-4 bg-white rounded-xl shadow-sm">
+                  <h3 className="text-2xl font-bold text-blue-600">Step 2: Skills</h3>
                 <MultiSelect options={['Web Development', 'Graphic Design', 'Marketing', 'Writing']} onChange={(selected) => handleChange('skills', selected)} />
                 {errors.skills && <p className="text-red-500">{errors.skills}</p>}
                 <Button onClick={prevStep}>Back</Button>
-                <Button onClick={nextStep} disabled={isSubmitting}>Next</Button>
+                  <Button className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-2 transition-all" onClick={nextStep} disabled={isSubmitting}>Next</Button>
               </div>
             )}
 
             {role === 'Freelancer' && step === 3 && (
-              <div>
-                <h3 className="text-2xl font-bold">Step 3: Experience & Rates</h3>
+                <div className="space-y-4 p-4 bg-white rounded-xl shadow-sm">
+                  <h3 className="text-2xl font-bold text-blue-600">Step 3: Experience & Rates</h3>
                 <Input
                   placeholder="Years of Experience"
                   value={formData.experience}
                   onBlur={() => validateField('experience', formData.experience)}
                   onChange={(e) => handleChange('experience', e.target.value)}
-                  aria-label="Years of Experience"
+                    aria-label="Years of Experience"
+                    className="p-3 rounded-xl border focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.experience && <p className="text-red-500">{errors.experience}</p>}
                 <Input
@@ -220,33 +245,34 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, onClose }
                   value={formData.expectedRate}
                   onBlur={() => validateField('expectedRate', formData.expectedRate)}
                   onChange={(e) => handleChange('expectedRate', e.target.value)}
-                  aria-label="Expected Hourly Rate"
+                    aria-label="Expected Hourly Rate"
+                    className="p-3 rounded-xl border focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.expectedRate && <p className="text-red-500">{errors.expectedRate}</p>}
                 <Button onClick={prevStep}>Back</Button>
-                <Button onClick={handleSubmit} disabled={isSubmitting}>Submit</Button>
+                  <Button className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-2 transition-all" onClick={handleSubmit} disabled={isSubmitting}>Submit</Button>
               </div>
             )}
 
             {/* Client Flow */}
             {role === 'Client' && step === 1 && (
-              <div>
-                <h3 className="text-2xl font-bold">Step 1: Business Info</h3>
+                <div className="space-y-4 p-4 bg-white rounded-xl shadow-sm">
+                  <h3 className="text-2xl font-bold text-blue-600">Step 1: Business Info</h3>
                 <Input placeholder="Business Name" value={formData.businessName} onChange={(e) => handleChange('businessName', e.target.value)} aria-label="Business Name" />
                 {errors.businessName && <p className="text-red-500">{errors.businessName}</p>}
                 <Input placeholder="Email Address" value={formData.email} onChange={(e) => handleChange('email', e.target.value)} aria-label="Email Address" />
                 {errors.email && <p className="text-red-500">{errors.email}</p>}
-                <Button onClick={nextStep} disabled={isSubmitting}>Next</Button>
+                  <Button className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-2 transition-all" onClick={nextStep} disabled={isSubmitting}>Next</Button>
               </div>
             )}
 
             {role === 'Client' && step === 2 && (
-              <div>
-                <h3 className="text-2xl font-bold">Step 2: Project Description</h3>
+                <div className="space-y-4 p-4 bg-white rounded-xl shadow-sm">
+                  <h3 className="text-2xl font-bold text-blue-600">Step 2: Project Description</h3>
                 <Input placeholder="Project Description" value={formData.projectDescription} onChange={(e) => handleChange('projectDescription', e.target.value)} aria-label="Project Description" />
                 {errors.projectDescription && <p className="text-red-500">{errors.projectDescription}</p>}
                 <Button onClick={prevStep}>Back</Button>
-                <Button onClick={handleSubmit} disabled={isSubmitting}>Submit</Button>
+                  <Button className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-2 transition-all" onClick={handleSubmit} disabled={isSubmitting}>Submit</Button>
               </div>
             )}
           </>
