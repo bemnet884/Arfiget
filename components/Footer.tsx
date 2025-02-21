@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/footer";
 import LaunchUI from "@/components/logos/launch-ui";
 import { Laptop } from "lucide-react";
+import Link from "next/link";
 
 export default function FooterSection() {
   return (
@@ -22,67 +23,67 @@ export default function FooterSection() {
             </FooterColumn>
             <FooterColumn>
               <h3 className="text-md pt-1 font-semibold">Services</h3>
-              <a
+              <Link
                 href="/"
                 className="text-sm text-muted-foreground"
               >
                 Find Freelancers
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/"
                 className="text-sm text-muted-foreground"
               >
                 Post a Job
-              </a>
+              </Link>
             </FooterColumn>
             <FooterColumn>
               <h3 className="text-md pt-1 font-semibold">Company</h3>
-              <a
+              <Link
                 href="/"
                 className="text-sm text-muted-foreground"
               >
                 About Us
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/"
                 className="text-sm text-muted-foreground"
               >
                 Careers
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/"
                 className="text-sm text-muted-foreground"
               >
                 Blog
-              </a>
+              </Link>
             </FooterColumn>
             <FooterColumn>
               <h3 className="text-md pt-1 font-semibold">Support</h3>
-              <a
+              <Link
                 href="/"
                 className="text-sm text-muted-foreground"
               >
                 Help Center
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/"
                 className="text-sm text-muted-foreground"
               >
                 Community Forum
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/"
                 className="text-sm text-muted-foreground"
               >
                 Contact Us
-              </a>
+              </Link>
             </FooterColumn>
           </FooterContent>
           <FooterBottom>
             <div>© 2025 Arfiget. All rights reserved</div>
             <div className="flex items-center gap-4">
-              <a href="/">Privacy Policy</a>
-              <a href="/">Terms of Service</a>
+              <Link href="/">Privacy Policy</Link>
+              <Link href="/">Terms of Service</Link>
               <ModeToggle />
             </div>
           </FooterBottom>
