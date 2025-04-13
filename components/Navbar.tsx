@@ -19,8 +19,8 @@ const Navbar = () => {
       <div className="hidden md:flex items-center space-x-8">
         {[
           { label: 'Home', href: '/' },
-          { label: 'Find Work', href: '#' },
-          { label: 'Find Freelancers', href: '#' },
+          { label: 'Find Work', href: '/jobs' },
+          { label: 'Find Freelancers', href: '/freelancers' },
           { label: 'Log In', href: '#' },
         ].map((link, index) => (
           <Link
@@ -31,6 +31,7 @@ const Navbar = () => {
             {link.label}
           </Link>
         ))}
+
 
         <Button
           className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg shadow-md transition-all"

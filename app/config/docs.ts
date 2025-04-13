@@ -10,11 +10,11 @@ export const docsConfig: DocsConfig = {
   mainNav: [
     {
       title: "Find Work",
-      href: "/find-work",
+      href: "/jobs",
     },
     {
       title: "My Jobs",
-      href: "/my-jobs",
+      href: "/jobs",
     },
     {
       title: "Messages",

@@ -5,7 +5,6 @@ import {
   FooterBottom,
   FooterContent,
 } from "@/components/ui/footer";
-import LaunchUI from "@/components/logos/launch-ui";
 import { Laptop } from "lucide-react";
 import Link from "next/link";
 
