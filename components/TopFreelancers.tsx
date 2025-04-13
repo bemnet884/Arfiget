@@ -19,7 +19,7 @@ const freelancers = [
     name: "Beza A.",
     role: "Digital Marketer",
     rating: 4.8,
-    img: "digitalmarkrt.jpg",
+    img: "/digitalmarkrt.jpg",
   },
 ];
 
@@ -45,6 +45,8 @@ const TopFreelancers = () => {
             <Image
               src={freelancer.img}
               alt={freelancer.name}
+              width={30}
+              height={30}
               className="w-full h-48 object-cover"
             />
 
