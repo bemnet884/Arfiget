@@ -1,11 +1,19 @@
 // app/jobs/page.tsx
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
+import SearchBar from '@/components/SearchBar'; // 🧠 we reuse the component!
 
-const mockJobs = [
+interface Job {
+  id: number;
+  title: string;
+  description: string;
+  budget: string;
+}
+
+const mockJobs: Job[] = [
   {
     id: 1,
     title: 'Build a modern portfolio site',
@@ -68,23 +76,42 @@ const mockJobs = [
   },
 ];
 
-
 const JobsPage = () => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const filteredJobs = mockJobs.filter((job) =>
+    job.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
       <h1 className="text-4xl font-bold text-gray-900 mb-8">🚀 Explore Open Jobs</h1>
 
-      <div className="grid lg:grid-cols-3 gap-6 sm:grid-cols-1 md:grid-cols-2">
-        {mockJobs.map((job) => (
-          <Link key={job.id} href={`/jobs/${job.id}`} className="block">
-            <Card className="p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-200 hover:border-blue-500">
-              <h2 className="text-2xl font-semibold text-gray-800">{job.title}</h2>
-              <p className="text-gray-600 mt-2 line-clamp-3">{job.description}</p>
-              <p className="text-blue-600 font-medium mt-4">{job.budget}</p>
-            </Card>
-          </Link>
-        ))}
+      {/* Search Bar */}
+      <div className="mb-8">
+        <SearchBar
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search jobs by title..."
+        />
       </div>
+
+      {/* Job Cards */}
+      {filteredJobs.length > 0 ? (
+        <div className="grid lg:grid-cols-3 gap-6 sm:grid-cols-1 md:grid-cols-2">
+          {filteredJobs.map((job) => (
+            <Link key={job.id} href={`/jobs/${job.id}`} className="block">
+              <Card className="p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-200 hover:border-blue-500">
+                <h2 className="text-2xl font-semibold text-gray-800">{job.title}</h2>
+                <p className="text-gray-600 mt-2 line-clamp-3">{job.description}</p>
+                <p className="text-blue-600 font-medium mt-4">{job.budget}</p>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <div className="text-gray-500 text-center mt-8">No jobs found matching "{searchTerm}"</div>
+      )}
     </div>
   );
 };

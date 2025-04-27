@@ -5,7 +5,6 @@ import {
   FooterBottom,
   FooterContent,
 } from "@/components/ui/footer";
-import { Laptop } from "lucide-react";
 import Link from "next/link";
 
 export default function FooterSection() {
@@ -16,8 +15,7 @@ export default function FooterSection() {
           <FooterContent>
             <FooterColumn className="col-span-2 sm:col-span-3 md:col-span-1">
               <div className="flex items-center gap-2">
-                <Laptop className="text-blue-500" />
-                <div className="text-2xl font-extrabold text-blue-700 tracking-wide">Arfiget</div>
+                <div className="text-2xl font-extrabold text-blue-700 tracking-wide">Ethio-freelancer</div>
               </div>
             </FooterColumn>
             <FooterColumn>
@@ -79,7 +77,7 @@ export default function FooterSection() {
             </FooterColumn>
           </FooterContent>
           <FooterBottom>
-            <div>© 2025 Arfiget. All rights reserved</div>
+            <div>© 2025 Ethio-freelancer. All rights reserved</div>
             <div className="flex items-center gap-4">
               <Link href="/">Privacy Policy</Link>
               <Link href="/">Terms of Service</Link>

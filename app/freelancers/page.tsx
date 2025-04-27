@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input'; // If you don't have it, replace with normal input
 
 const mockFreelancers = [
   {
@@ -93,53 +94,78 @@ const mockFreelancers = [
   },
 ];
 
-
 const FreelancersPage = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredFreelancers = mockFreelancers.filter((freelancer) => {
+    const term = searchTerm.toLowerCase();
+    return (
+      freelancer.name.toLowerCase().includes(term) ||
+      freelancer.title.toLowerCase().includes(term) ||
+      freelancer.location.toLowerCase().includes(term) ||
+      freelancer.skills.some(skill => skill.toLowerCase().includes(term))
+    );
+  });
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-10 space-y-6">
       <h1 className="text-3xl font-bold text-gray-800">Available Freelancers</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {mockFreelancers.map((freelancer) => (
-          <Card key={freelancer.id} className="p-4 rounded-xl shadow-sm hover:shadow-md transition">
-            <CardContent className="p-0 space-y-4">
-              <div className="flex items-center gap-4">
-                <img
-                  src={freelancer.avatar}
-                  alt={freelancer.name}
-                  className="w-14 h-14 rounded-full object-cover border"
-                />
-                <div>
-                  <h2 className="text-lg font-semibold">{freelancer.name}</h2>
-                  <p className="text-sm text-gray-500">{freelancer.title}</p>
-                </div>
-              </div>
-
-              <p className="text-gray-600 text-sm line-clamp-3">{freelancer.bio}</p>
-
-              <div className="flex flex-wrap gap-2">
-                {freelancer.skills.map((skill, idx) => (
-                  <Badge key={idx} variant="secondary">{skill}</Badge>
-                ))}
-              </div>
-
-              <div className="flex justify-between items-center text-sm text-gray-500">
-                <span>{freelancer.hourlyRate}</span>
-                <span>⭐ {freelancer.rating}</span>
-              </div>
-
-              <div className="flex justify-between items-center pt-2">
-                <p className="text-sm text-gray-400">{freelancer.location}</p>
-                <Link href={`/freelancers/${freelancer.id}`}>
-                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
-                    View Profile
-                  </Button>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+      <div className="w-full max-w-md mb-8">
+        <Input
+          type="text"
+          placeholder="Search freelancers by name, title, skills, or location..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full p-3 border border-gray-300 rounded-lg"
+        />
       </div>
+
+      {filteredFreelancers.length === 0 ? (
+        <p className="text-gray-500">No freelancers found.</p>
+      ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredFreelancers.map((freelancer) => (
+              <Card key={freelancer.id} className="p-4 rounded-xl shadow-sm hover:shadow-md transition">
+                <CardContent className="p-0 space-y-4">
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={freelancer.avatar}
+                      alt={freelancer.name}
+                      className="w-14 h-14 rounded-full object-cover border"
+                    />
+                    <div>
+                      <h2 className="text-lg font-semibold">{freelancer.name}</h2>
+                      <p className="text-sm text-gray-500">{freelancer.title}</p>
+                    </div>
+                  </div>
+
+                <p className="text-gray-600 text-sm line-clamp-3">{freelancer.bio}</p>
+
+                <div className="flex flex-wrap gap-2">
+                  {freelancer.skills.map((skill, idx) => (
+                    <Badge key={idx} variant="secondary">{skill}</Badge>
+                  ))}
+                </div>
+
+                <div className="flex justify-between items-center text-sm text-gray-500">
+                  <span>{freelancer.hourlyRate}</span>
+                  <span>⭐ {freelancer.rating}</span>
+                </div>
+
+                <div className="flex justify-between items-center pt-2">
+                  <p className="text-sm text-gray-400">{freelancer.location}</p>
+                  <Link href={`/freelancers/${freelancer.id}`}>
+                    <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
+                      View Profile
+                    </Button>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+          </div>
+      )}
     </div>
   );
 };
