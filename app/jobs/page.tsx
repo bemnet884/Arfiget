@@ -12,7 +12,6 @@ interface Job {
   description: string;
   budget: string;
 }
-
 const mockJobs: Job[] = [
   {
     id: 1,
@@ -110,7 +109,7 @@ const JobsPage = () => {
           ))}
         </div>
       ) : (
-        <div className="text-gray-500 text-center mt-8">No jobs found matching "{searchTerm}"</div>
+          <div className="text-gray-500 text-center mt-8">No jobs found matching &quot;{searchTerm}&quot;</div>
       )}
     </div>
   );
